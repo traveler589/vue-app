@@ -11,7 +11,7 @@
         bubble-bottom
       </button>
     </div>
-    <div class="canvas" ref="canvas"></div>
+    <div class="canvas" ref="canvas" />
   </div>
 
   <div class="fixed">
@@ -27,10 +27,13 @@
   </div>
 </template>
 <script setup>
+import { ref, onMounted, useTemplateRef } from "vue";
 import { Graph, Shape } from "@antv/x6";
 import { Dnd } from "@antv/x6-plugin-dnd";
 import { History } from "@antv/x6-plugin-history";
-import { ref, onMounted, useTemplateRef } from "vue";
+import { Snapline } from "@antv/x6-plugin-snapline";
+import { Selection } from "@antv/x6-plugin-selection";
+import { Transform } from "@antv/x6-plugin-transform";
 
 const dnd = ref(null);
 const graph = ref(null);
@@ -224,14 +227,20 @@ onMounted(() => {
             line: {
               stroke: "#f00",
               strokeWidth: 5,
+              // sourceMarker: {
+              //   tagName: "path",
+              //   d: "M 20 -10 0 0 20 10 Z",
+              // },
               targetMarker: {
-                name: "block",
-                width: 12,
-                height: 8,
+                tagName: "path",
+                fill: "yellow", // 使用自定义填充色
+                // stroke: "green", // 使用自定义边框色
+                strokeWidth: 2,
+                d: "M 20 -10 0 0 20 10 Z",
               },
             },
           },
-          zIndex: 0,
+          tools: ["button-remove"],
         });
       },
       validateConnection({ targetMagnet }) {
@@ -255,12 +264,33 @@ onMounted(() => {
     target: graph.value,
   });
 
-  // 历史操作
-  graph.value.use(
-    new History({
-      enabled: true,
-    })
-  );
+  // 插件
+  graph.value
+    .use(
+      new Snapline({
+        enabled: true,
+      })
+    )
+    .use(
+      new Transform({
+        resizing: {
+          enabled({ shape }) {
+            return shape === "custom1";
+          },
+        },
+      })
+    )
+    .use(
+      new Selection({
+        rubberband: true,
+        showNodeSelectionBox: true,
+      })
+    )
+    .use(
+      new History({
+        enabled: true,
+      })
+    );
 
   // 拖放松手时触发弹出表单
   graph.value.on("node:added", clickNode);
