@@ -1,0 +1,28 @@
+@use "./mixin.scss";
+
+// body 内部滚动
+.ant-modal.scrollBody {
+  .ant-modal-content {
+    min-height: 500px;
+    max-height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+  }
+  .ant-modal-body {
+    min-height: 360px;
+    padding: 10px;
+    @include mixin.scrollbar;
+  }
+}
+
+.ant-modal-confirm {
+  .link {
+    color: #1677ff;
+    &:hover {
+      color: #69b1ff;
+    }
+    &:active {
+      color: #0958d9;
+    }
+  }
+}

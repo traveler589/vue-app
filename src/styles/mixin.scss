@@ -1,0 +1,7 @@
+// 滚动条样式
+@mixin scrollbar($dir: 'y') {
+  overflow-#{$dir}: auto;
+  overflow-#{$dir}: overlay;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}

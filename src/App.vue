@@ -1,11 +1,9 @@
 <template>
-  <x6 v-if="edit" />
-  <x6-view v-else />
+  <ConfigProvider :locale="zhCN">
+    <router-view />
+  </ConfigProvider>
 </template>
 <script setup>
-import { ref } from "vue";
-import X6 from "./components/x6.vue";
-import X6View from "./components/x6-view.vue";
-
-const edit = ref(true);
+import { ConfigProvider } from "ant-design-vue";
+import zhCN from "ant-design-vue/es/locale/zh_CN";
 </script>
