@@ -4,9 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dd": "vitepress dev docs",
+    "db": "vitepress build docs",
+    "dp": "vitepress preview docs --port 2132",
+    "dt": "node ./docs/.vitepress/transform.js"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
@@ -26,7 +30,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
+    "html-minifier": "^4.0.0",
+    "puppeteer-core": "^23.6.0",
     "sass": "^1.80.3",
-    "vite": "^5.4.8"
+    "vite": "^5.4.8",
+    "vitepress": "^1.4.1"
   }
 }

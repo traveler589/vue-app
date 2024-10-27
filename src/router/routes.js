@@ -7,7 +7,7 @@ import { h } from "vue";
 import Layout from "@/components/layout/index.vue";
 import {
   // ForkOutlined,
-  ToolOutlined,
+  // ToolOutlined,
   ExportOutlined,
   // ControlOutlined,
   // ApartmentOutlined,
@@ -36,6 +36,15 @@ const menuRoutes = [
       title: "Markdown",
     },
     component: () => import(`@/views/markdown/index.vue`),
+  },
+  {
+    path: "vitepress",
+    name: PageEnum.Vitepress,
+    icon: h(ExportOutlined),
+    meta: {
+      title: "Vitepress",
+    },
+    component: () => import(`@/views/vitepress/index.vue`),
   },
   // {
   //   path: 'pack',

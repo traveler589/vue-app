@@ -17,4 +17,13 @@ export default defineConfig({
       "@": path.resolve("./src"),
     },
   },
+  server: {
+    proxy: {
+      "/docs": {
+        target: "http://localhost:4173",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/docs/, ""),
+      },
+    },
+  },
 });

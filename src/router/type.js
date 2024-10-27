@@ -14,6 +14,8 @@ export const PageEnum = {
   // 文档
   Markdown: "Markdown",
 
+  Vitepress: "Vitepress",
+
   // 404
   NotFound: "NotFound",
 };
