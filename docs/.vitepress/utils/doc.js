@@ -27,11 +27,11 @@ const getData = async (url) => {
 
   const link = await page.$eval("link[rel~=stylesheet]", (e) => e.href);
 
+  const body = await page.$eval("#VPContent", (e) => e.innerHTML);
+
   const css = await get(link);
 
-  const style = cleanStyle(css);
-
-  const body = await page.$eval("#VPContent", (e) => e.innerHTML);
+  const style = cleanStyle(css, body);
 
   const title = await page.title();
 

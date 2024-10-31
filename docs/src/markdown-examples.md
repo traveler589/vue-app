@@ -1,5 +1,35 @@
 # Markdown Extension Examples
 
+目录表
+[[toc]]
+
+## 代码组
+
+::: code-group
+
+```js [config.js]
+/**
+ * @type {import('vitepress').UserConfig}
+ */
+const config = {
+  // ...
+}
+
+export default config
+```
+
+```ts [config.ts]
+import type { UserConfig } from 'vitepress'
+
+const config: UserConfig = {
+  // ...
+}
+
+export default config
+```
+
+:::
+
 This page demonstrates some of the built-in markdown extensions provided by VitePress.
 
 ## Syntax Highlighting
